@@ -21,6 +21,7 @@ namespace BackgroundDownloadSample
         public Slider slider;
         public Button startButton;
         public Button clearButton;
+        private Text clearButtonText;
 
         private void Start()
         {
@@ -36,6 +37,7 @@ namespace BackgroundDownloadSample
             if (clearButton != null)
             {
                 clearButton.onClick.AddListener(ClearDownload);
+                clearButtonText = clearButton.GetComponentInChildren<Text>();
             }
         }
         
@@ -75,9 +77,9 @@ namespace BackgroundDownloadSample
                 startButton.interactable = state == BackgroundDownloadManager.State.Idle;
             }
 
-            if (clearButton != null)
+            if (clearButtonText != null)
             {
-                clearButton.interactable = state == BackgroundDownloadManager.State.Finished;
+                clearButtonText.text = state == BackgroundDownloadManager.State.Downloading ? "Cancel" : "Reset";
             }
         }
 
