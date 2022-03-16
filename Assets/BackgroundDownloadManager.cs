@@ -112,7 +112,7 @@ namespace BackgroundDownloadSample
             bool finished = true;
             foreach (BackgroundDownload download in _downloads)
             {
-                totalProgress += download.progress;
+                totalProgress += Mathf.Clamp01(download.progress);
                 if (download.status == BackgroundDownloadStatus.Downloading)
                 {
                     finished = false;
